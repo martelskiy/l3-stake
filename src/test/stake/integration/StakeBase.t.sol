@@ -15,7 +15,7 @@ abstract contract StakeBase is Test, Token, Network {
     /*//////////////////////////////////////////////////////////////////////////
                                    TEST CONTRACTS
     //////////////////////////////////////////////////////////////////////////*/
-    StakeERC20 internal stake;
+    StakeERC20 internal sut;
 
     /*//////////////////////////////////////////////////////////////////////////
                                    HELPERS CONTRACTS
@@ -39,7 +39,7 @@ abstract contract StakeBase is Test, Token, Network {
             bob: _createUser("Bob", address(token), TOKEN_USER_HOLDINGS)
         });
 
-        stake = new StakeERC20(address(token));
+        sut = new StakeERC20(address(token));
     }
 
     function _createUser(

@@ -6,7 +6,7 @@
     "clean": "hardhat clean & forge clean",
     "lint": "solhint list-rules && solhint contracts/**/*.sol test/**/*.sol",
     "format": "prettier --write contracts/**/*.sol test/**/*.sol",
-    "deploy": "hardhat run .\\scripts\\main.ts --network sepolia",
+    "deploy": "hardhat run .\\scripts\\main.ts --network base",
     "compile": "hardhat compile && forge compile",
     "test": "forge test -vv",
     "node": "hardhat node"

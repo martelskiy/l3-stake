@@ -1,6 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 import {Test} from "forge-std/Test.sol";
 import {StakeERC20} from "../../../contracts/StakeERC20.sol";
 import {Token} from "../helpers/Token.sol";
@@ -39,7 +40,11 @@ abstract contract StakeBase is Test, Token, Network {
             bob: _createUser("Bob", address(token), TOKEN_USER_HOLDINGS)
         });
 
-        sut = new StakeERC20(address(token));
+        sut = new StakeERC20();
+        ERC1967Proxy proxy = new ERC1967Proxy(address(sut), "");
+        sut = StakeERC20(address(proxy));
+
+        sut.initialize(address(token));
     }
 
     function _createUser(

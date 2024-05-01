@@ -26,4 +26,16 @@ contract StakeTest is StakeBase {
 
         sut.unstake();
     }
+
+    function testGivenUserWithStakeWhenStakeThenReverts() public {
+        vm.startPrank(testUsers.alice);
+        uint256 stakeAmount = token.balanceOf(testUsers.alice) / 10;
+        token.approve(address(sut), stakeAmount);
+        sut.stake(stakeAmount);
+
+        bytes4 errorSelector = bytes4(keccak256("AddressHasStake(address)"));
+        vm.expectRevert(abi.encodeWithSelector(errorSelector, testUsers.alice));
+
+        sut.stake(stakeAmount);
+    }
 }

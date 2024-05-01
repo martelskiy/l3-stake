@@ -15,7 +15,7 @@ async function main() {
      with owner set to: '${signer.address}'`,
   );
 
-  await deploy<StakeERC20>("StakeERC20", stakedToken.get(network.name));
+  await deploy<StakeERC20>(true, "StakeERC20", stakedToken.get(network.name));
 }
 
 main().catch((error) => {
